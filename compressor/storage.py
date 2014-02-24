@@ -65,6 +65,9 @@ class GzipCompressorFileStorage(CompressorFileStorage):
     The standard compressor file system storage that gzips storage files
     additionally to the usual files.
     """
+    def url(name):
+        return '%s.gz' % super(GzipCompressorFileStorage, self).url(name)
+
     def save(self, filename, content):
         filename = super(GzipCompressorFileStorage, self).save(filename, content)
         orig_path = self.path(filename)
